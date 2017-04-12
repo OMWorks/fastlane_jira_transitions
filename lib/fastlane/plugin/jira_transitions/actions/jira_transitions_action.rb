@@ -50,6 +50,7 @@ module Fastlane
       def self.available_options
         [
           FastlaneCore::ConfigItem.new(key: :client,
+                              description: "JIRA::Client from 'jira-ruby' gem",
                                 is_string: false,
                                 optional: false,
                                 type: JIRA::Client),
