@@ -1,3 +1,46 @@
-lane :test do
-  jira_transitions
-end
+  def jira_client
+  	site = "https://your_jira_url"
+  	context_path = ""
+  	auth_type = :basic
+  	username = "your_jira_email"
+  	password = "your_jira_password"
+  	options = {
+  		site: site,
+  		context_path: context_path,
+  		auth_type: auth_type,
+  		username: username,
+  		password: password
+  	}
+  	lient = JIRA::Client.new(options)
+  	client
+  end
+
+  lane :test do
+  	client = jira_client()
+  	ticket_id = "TEST-101"  
+     		# Can be matched with block
+    jira_transitions(
+     	client: client,
+     	ticket_id: ticket_id,
+     	matching: lambda { |transition|
+     		name = transition.name
+     		name == 'Ready to Test' || name == 'Build is ready' 
+     		}
+     )
+
+	# or transition_id
+	# jira_transitions(
+	# 	client: client,
+	# 	ticket_id: ticket_id, 
+	# 	transition_id: "151" 
+	# )
+
+	# or transition_name
+	# jira_transitions(
+	# 	client: client,
+	# 	ticket_id: ticket_id, 
+	# 	transition_name: "Ready to Test",
+	# 	fail_if_no_matching: true
+	# )
+ end
+ 

@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = %q{me@austinate.me}
 
   spec.summary       = %q{Runs transitions for specified JIRA tickets}
-  # spec.homepage      = "https://github.com/<GITHUB_USERNAME>/fastlane-plugin-jira_transitions"
+  spec.homepage      = "https://github.com/OMWorks/fastlane_jira_transitions"
   spec.license       = "MIT"
 
   spec.files         = Dir["lib/**/*"] + %w(README.md LICENSE)
